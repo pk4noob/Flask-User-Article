@@ -6,6 +6,7 @@ from logging.config import dictConfig
 from extensions.extensions import ma, db,jwt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+import logging
 
 settings = {
     "dev": "settings.devsettings.DevelopSettings",
@@ -18,17 +19,62 @@ dictConfig({
     'formatters': {'default': {
         'format': '[%(asctime)s.%(msecs)03d] %(levelname)s %(name)s:%(funcName)s:%(message)s  %(module)s: %(message)s',
     }},
-    'handlers': {'wsgi': {
-        'class': 'logging.StreamHandler',
-        'stream': 'ext://sys.stdout',
-        'formatter': 'default'
-    }},
+
+       'handlers': 
+    {
+        'wsgi':{
+        'class' : 'logging.FileHandler',
+        'formatter': 'default',
+        'filename' : 'WARN.log'
+        },
+        'custom_handler': {
+        'class' : 'logging.FileHandler',
+        'formatter': 'default',
+        'filename' : 'WARN.log'
+        }
+    },
     'root': {
-        'level': 'DEBUG',
+        'level': 'INFO',
         'handlers': ['wsgi']
+    },
+    'MyExample': {
+        'level': 'WARN',
+        'handlers' : 'custom_handler'
     }
 })
 
+# dictConfig(
+#             {
+#     'version': 1,
+#     'formatters': {
+#             'default': {
+#                         'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+#                        },
+#             'simpleformatter' : {
+#                         'format' : '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+#             }
+#     },
+#     'handlers': 
+#     {
+#         'wsgi': {
+#         'class': 'logging.StreamHandler',
+#         'formatter': 'default'
+#                 },
+#         'custom_handler': {
+#         'class' : 'logging.FileHandler',
+#         'formatter': 'simpleformatter',
+#         'filename' : 'WARN.log'
+#         }
+#     },
+#     'root': {
+#         'level': 'INFO',
+#         'handlers': ['wsgi']
+#     },
+#     'MyExample': {
+#         'level': 'WARN',
+#         'handlers' : 'custom_handler'
+#     }
+# })
 
 def get_settings(settings_name):
     if settings.get(settings_name):
@@ -38,6 +84,7 @@ def get_settings(settings_name):
 
 def createAp(settings_name):
     app = Flask(__name__)
+    Logger = logging.getLogger(__name__)
     handler = logging.StreamHandler(sys.stdout)
     settings_obg = get_settings(settings_name)
     app.config.from_object(settings_obg)

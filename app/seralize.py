@@ -29,7 +29,6 @@ class ArticleSchema(ma.SQLAlchemyAutoSchema):
         load_instance=True
 
 
-
 #UpdateArticleSchema
 class UpdateArticleSchema(ma.Schema):
     title = fields.String()

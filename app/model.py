@@ -2,6 +2,7 @@ from flask import Flask
 from werkzeug.security import check_password_hash,generate_password_hash
 from extensions.extensions import ma,db
 
+
 class User(db.Model):
     __tablename__="User"
     id = db.Column(db.Integer(),primary_key=True)
@@ -12,6 +13,7 @@ class User(db.Model):
 
     def set_password(self):
         self.password = generate_password_hash(self.password)
+        
 
     def check_password(self, password):
         return check_password_hash(self.password, password)

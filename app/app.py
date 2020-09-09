@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
-from app_init.app_factory import createAp
+from app_init.app_factory import createAp,dictConfig
 from flask import jsonify, current_app, request
 from flask import Flask, jsonify, request
 from http import HTTPStatus
+# from pycipher import Caesar
+from caesarcipher import CaesarCipher
 from werkzeug.security import generate_password_hash
 import os
 import warnings
@@ -15,23 +17,32 @@ from flask_jwt_extended import (
     get_jwt_identity
 )
 import jwt
+import logging
 
 warnings.simplefilter("ignore")
 settings_name = os.getenv("settings")
 app = createAp(settings_name)
-
+# dict_Config = os.getenv("dictConfig")
+# Logger = createAp(dict_Config)
 
 #USER POST METHODS
 @app.route("/user",methods=["POST"])
 def createUser():
     data = request.get_json()
+
     try:
         user = UserSchema().load(data)
         user.set_password()
         user.savedb()
+        # log = app.logger.getLogger("custom_handler")
+        app.logger.info(f"user created with user id : {user.id},{user.name}")
+
+        # app.logger.info("Create olundu")
     except ValidationError as err:
+        app.logger.exception("Sehvdir")
         return jsonify(err.messages),HTTPStatus.BAD_REQUEST
     return UserSchema(exclude=["password"]).jsonify(user),HTTPStatus.OK
+    app.logger.info("Bitdi")
 
 #USER GET METHODS
 @app.route("/users",methods=["GET"])
@@ -106,6 +117,8 @@ def UserArticleGetMethods(id):
         return ArticleSchema().jsonify(data),HTTPStatus.OK
     return jsonify(msg = "Not Found Get Methods"),HTTPStatus.NOT_FOUND
 
+
+
 @app.route("/user/article",methods=["GET"])
 @jwt_required
 def UserArticleGetAllMethods():
@@ -135,8 +148,35 @@ def UserArticleDeleteMethods(id):
         return jsonify(msg = "SILINDI"),HTTPStatus.OK
     return jsonify(msg="Silinmedi"),HTTPStatus.NOT_FOUND
 
+# @app.route("user/login",methods=["POST"])
+# def login():
+#     name = request.json.get("name")
+#     password = request.json.get("passowrd")
+
+#     user = User.query.filter_by(name=name).first()
+#     if user:
+#         if user.check_password(password):
+#             token = {
+#                 "access_token":create_access_token(identity=user.id),
+#                 "refresh_token":create_refresh_token(identity=user.id)
+#             }
+
+#         return jsonify(token),HTTPStatus.OK
+#     return jsonify(msg="User not Founded"),HTTPStatus.NOT_FOUND
+
+# @app.route("/refresh",methods=["POST"])
+# @jwt_refresh_token_required
+# def Refresh():
+#     user = get_jwt_identity()
+#     if user:
+#         access_token=create_access_token(identity=user)
+#         return jsonify({"Access Token:":access_token}),HTTPStatus.OK
+#     return jsonify(msg="ERROR"),HTTPStatus.NOT_FOUND
+
 
 #User - Login - Create - Methods
+
+
 @app.route("/user/login",methods=["POST"])
 def Login():
     print(request.get_json())
@@ -170,3 +210,4 @@ def refresh():
         access_token= create_access_token(identity=user)
         return jsonify({"Access Token:":access_token}),HTTPStatus.OK
     return jsonify(msg="ERROR"),HTTPStatus.NOT_FOUND
+

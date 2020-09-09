@@ -1,0 +1,19 @@
+[2020-09-07 17:38:31,946.946] INFO werkzeug:_log: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)  _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2020-09-07 17:38:34,989.989] INFO app_init.app_factory:createUser:salam  app: salam
+[2020-09-07 17:38:34,996.996] INFO werkzeug:_log:127.0.0.1 - - [07/Sep/2020 17:38:34] "[37mPOST /user HTTP/1.1[0m" 200 -  _internal: 127.0.0.1 - - [07/Sep/2020 17:38:34] "[37mPOST /user HTTP/1.1[0m" 200 -
+[2020-09-07 17:47:45,897.897] INFO werkzeug:_log: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)  _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2020-09-07 17:47:48,084.084] INFO app_init.app_factory:createUser:user created with user id : 22  app: user created with user id : 22
+[2020-09-07 17:47:48,088.088] INFO werkzeug:_log:127.0.0.1 - - [07/Sep/2020 17:47:48] "[37mPOST /user HTTP/1.1[0m" 200 -  _internal: 127.0.0.1 - - [07/Sep/2020 17:47:48] "[37mPOST /user HTTP/1.1[0m" 200 -
+[2020-09-07 17:48:26,554.554] INFO werkzeug:_log: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)  _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2020-09-07 17:48:30,640.640] INFO app_init.app_factory:createUser:user created with user id : 23,Sebuhi  app: user created with user id : 23,Sebuhi
+[2020-09-07 17:48:30,645.645] INFO werkzeug:_log:127.0.0.1 - - [07/Sep/2020 17:48:30] "[37mPOST /user HTTP/1.1[0m" 200 -  _internal: 127.0.0.1 - - [07/Sep/2020 17:48:30] "[37mPOST /user HTTP/1.1[0m" 200 -
+[2020-09-07 17:50:11,381.381] INFO werkzeug:_log: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)  _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2020-09-07 17:50:15,037.037] INFO app_init.app_factory:createUser:user created with user id :
+ 24,Sebuhi  app: user created with user id :
+ 24,Sebuhi
+[2020-09-07 17:50:15,045.045] INFO werkzeug:_log:127.0.0.1 - - [07/Sep/2020 17:50:15] "[37mPOST /user HTTP/1.1[0m" 200 -  _internal: 127.0.0.1 - - [07/Sep/2020 17:50:15] "[37mPOST /user HTTP/1.1[0m" 200 -
+[2020-09-07 17:51:01,335.335] INFO werkzeug:_log: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)  _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2020-09-07 17:51:03,080.080] INFO app_init.app_factory:createUser:
+user created with user id : 25,Sebuhi  app: 
+user created with user id : 25,Sebuhi
+[2020-09-07 17:51:03,086.086] INFO werkzeug:_log:127.0.0.1 - - [07/Sep/2020 17:51:03] "[37mPOST /user HTTP/1.1[0m" 200 -  _internal: 127.0.0.1 - - [07/Sep/2020 17:51:03] "[37mPOST /user HTTP/1.1[0m" 200 -
